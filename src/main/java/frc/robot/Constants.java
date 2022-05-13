@@ -19,6 +19,7 @@ public final class Constants {
     public static int leftSlavePort = 2;
     public static int rightMasterPort = 3;
     public static int rightSlavePort = 4;
-
+    public static int encoderPortChannelA = 5;
+    public static int encoderPortChannelB = 6;
     public static int joystickPort = 0;
 }

@@ -8,22 +8,25 @@ import java.lang.module.ModuleDescriptor.Requires;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.*;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class ManualDriveCommand extends CommandBase {
 
-  PS4Controller m_controller;
-  DriveSubsystem m_driveSubstystem;
+  private final PS4Controller m_controller;
+  private final DriveSubsystem m_driveSubsystem;
 
-  public ManualDriveCommand() {
+  public ManualDriveCommand(DriveSubsystem driveSubsystem, PS4Controller controller) {
+    m_driveSubsystem = driveSubsystem;
+    m_controller = controller;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    addRequirements(m_driveSubstystem);
+    addRequirements(m_driveSubsystem, m_controller);
   }
-
-  private void addRequirements(DriveSubsystem m_driveSubstystem2) {
+  //note: please copy whatever the actual code is supposed to be from github
+  private void addRequirements(DriveSubsystem m_driveSubsystem2, PS4Controller m_controller2) {
   }
 
   // Called just before this Command runs the first time
