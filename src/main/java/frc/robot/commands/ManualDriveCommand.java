@@ -39,7 +39,7 @@ public class ManualDriveCommand extends CommandBase {
     double move = -1 * m_controller.getLeftY();
     double turn = m_controller.getRightX();
 
-    RobotContainer.driveSubsytem.manualDrive(move, turn);
+    RobotContainer.driveSubsystem.manualDrive(move, turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()

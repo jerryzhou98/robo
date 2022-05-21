@@ -4,12 +4,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.*;
+import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.TurretSubsystem;
 
 public class TurretCommand extends CommandBase {
-  public TurretCommand() {
+  private final TurretSubsystem m_turret;
+  public static PS4Controller m1_controller;
+
+  public TurretCommand(TurretSubsystem t) {
+    m_turret = t;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    addRequirements(m_turret);
+  }
+
+  private void addRequirements(TurretSubsystem m_turret2) {
   }
 
   // Called just before this Command runs the first time
@@ -18,7 +28,18 @@ public class TurretCommand extends CommandBase {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  public void execute() {}
+  public void execute() {
+    // define the controller inputs
+    boolean l1_pressed = m1_controller.getL1Button();
+    if (l1_pressed){
+      m_turret.spinLeft();
+    }
+    boolean l2_pressed = m1_controller.getL2Button();
+    if (l2_pressed){
+      m_turret.spinRight();
+    }
+
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
