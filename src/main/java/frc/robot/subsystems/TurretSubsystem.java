@@ -42,7 +42,7 @@ public class TurretSubsystem extends CommandBase {
       motor1.set(ControlMode.Position, getAngle()+1);
     }
     else if(angle >= 135){
-      motor1.set(0);
+      stopSpin();;
     }
   } 
 
@@ -52,7 +52,7 @@ public class TurretSubsystem extends CommandBase {
       motor1.set(ControlMode.Position, getAngle()-1);
     }
     else{
-      motor1.set(0);
+      stopSpin();;
     }
   }
   
