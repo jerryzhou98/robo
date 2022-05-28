@@ -50,7 +50,7 @@ public class HoodSubsystem extends CommandBase {
     }
   } 
 
-  public void Spindown(){
+  public void spinDown(){
     double angle = getAngle();
     if(-135 <= angle && angle <= 135){
       motor1.set(ControlMode.Position, getAngle()-1);

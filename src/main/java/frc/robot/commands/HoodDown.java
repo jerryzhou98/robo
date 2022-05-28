@@ -7,27 +7,30 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HoodSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ExampleCommand extends CommandBase {
-  private final ExampleSubsystem m_subsystem;
+public class HoodDown extends CommandBase {
+  private final HoodSubsystem m_hood;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ExampleCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
+  public HoodDown(HoodSubsystem subsystem) {
+    m_hood = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(m_hood);
   }
 
-  // Called when the command is initially scheduled.
+  private void addRequirements(HoodSubsystem m_hood2) {
+}
+
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {
     //init
@@ -37,6 +40,7 @@ public class ExampleCommand extends CommandBase {
   @Override
   public void execute() {
     //execute
+    m_hood.spinDown();
   }
 
   // Called once the command ends or is interrupted.
