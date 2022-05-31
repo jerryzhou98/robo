@@ -12,9 +12,10 @@ public class TurretTurnRight extends CommandBase {
   PS4Controller m_controller;
   TurretSubsystem m_turret;
 
-  public TurretTurnRight() {
+  public TurretTurnRight(TurretSubsystem temp) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    m_turret = temp;
     addRequirements(m_turret);
   }
 

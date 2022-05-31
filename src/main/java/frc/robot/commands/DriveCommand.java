@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -23,6 +24,9 @@ public class DriveCommand extends CommandBase {
 
   /*private void addRequirements(DriveSubsystem m_driveSubstystem2) {
   }*/
+
+  private void addRequirements(DriveSubsystem m_driveSubstystem2) {
+  }
 
   // Called just before this Command runs the first time
   @Override

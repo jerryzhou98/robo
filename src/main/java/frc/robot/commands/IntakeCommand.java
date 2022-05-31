@@ -12,16 +12,19 @@ public class IntakeCommand extends CommandBase {
   PS4Controller m_controller;
   IntakeSubsystem m_intake;
 
-  public IntakeCommand() {
+  public IntakeCommand(IntakeSubsystem temp) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    m_intake = temp;
     addRequirements(m_intake);
   }
 
-  private void addRequirements(IntakeSubsystem m_turret2) {
-  }
 
-  // Called just before this Command runs the first time
+  private void addRequirements(IntakeSubsystem m_intake2) {
+}
+
+
+// Called just before this Command runs the first time
   @Override
   public void initialize() {}
 
