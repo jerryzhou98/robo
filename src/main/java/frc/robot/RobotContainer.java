@@ -41,10 +41,10 @@ public class RobotContainer {
   public Joystick stick = new Joystick(Constants.joystickPort);
 
   public static DriveSubsystem driveSubsytem = new DriveSubsystem();
-  public final DriveCommand driveCommand = new DriveCommand(driveSubsytem);
+  public final DriveCommand driveCommand = new DriveCommand(m_controller,driveSubsytem);
 
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  public final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem, m_xbox);
+  public final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem);
 
   public static IntakeSubsystem m_intake = new IntakeSubsystem();
   public final IntakeCommand intakeCommand = new IntakeCommand(m_intake);
@@ -74,8 +74,16 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new Button(m_controller::getL2Button)
       .whileHeld(turretleft);
-    new Button(m_controller::getL1Button)
+    new Button(m_controller::getR2Button)
       .whenHeld(turretright);
+    new Button(m_xbox::getAButton)
+      .whenPressed(intakeCommand);
+    new Button(m_controller::getL1Button)
+      .whenHeld(hoodup);
+    new Button(m_controller::getR1Button)
+      .whenHeld(hoodown);
+    new Button(m_controller::getSquareButton)
+      .whenPressed(shooterCommand);
   }
 
   /**
