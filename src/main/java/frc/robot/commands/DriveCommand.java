@@ -5,31 +5,40 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveSubsystem;
 
-public class ShooterCommand extends CommandBase {
+public class DriveCommand extends CommandBase {
+
   PS4Controller m_controller;
-  ShooterSubsystem m_shooter;
+  DriveSubsystem m_driveSubstystem;
 
-  public ShooterCommand(ShooterSubsystem manipulator, XboxController controller) {
-    this.m_shooter = manipulator;
-
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_shooter);
+  public DriveCommand(PS4Controller controller, DriveSubsystem drivetrainSubsystem) {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    m_driveSubstystem = drivetrainSubsystem;
+    addRequirements(m_driveSubstystem);
   }
+
+  /*private void addRequirements(DriveSubsystem m_driveSubstystem2) {
+  }*/
 
   // Called just before this Command runs the first time
   @Override
   public void initialize() {}
 
   // Called repeatedly when this Command is scheduled to run
+  @Override
   public void execute() {
-    m_shooter.go();
+    double move = -1 * m_controller.getLeftY();
+    double turn = m_controller.getRightX();
+
+    m_driveSubstystem.manualDrive(move, turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()
+  @Override
   public boolean isFinished() {
     return false;
   }

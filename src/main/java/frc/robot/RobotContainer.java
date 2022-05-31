@@ -8,9 +8,20 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.HoodDown;
+import frc.robot.commands.HoodUp;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.TurretTurnLeft;
+import frc.robot.commands.TurretTurnRight;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HoodSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 
@@ -21,6 +32,8 @@ import edu.wpi.first.wpilibj2.command.button.Button;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  final PS4Controller m_controller = new PS4Controller(1);
+  final XboxController m_xbox = new XboxController(1);
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -28,9 +41,23 @@ public class RobotContainer {
   public Joystick stick = new Joystick(Constants.joystickPort);
 
   public static DriveSubsystem driveSubsytem = new DriveSubsystem();
+  public final DriveCommand driveCommand = new DriveCommand(driveSubsytem);
 
-  final PS4Controller m_controller = new PS4Controller(1);
-  final XboxController m_xbox = new XboxController(1);
+  public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  public final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem, m_xbox);
+
+  public static IntakeSubsystem m_intake = new IntakeSubsystem();
+  public final IntakeCommand intakeCommand = new IntakeCommand(m_intake);
+
+  public static TurretSubsystem m_turret = new TurretSubsystem();
+  public final TurretTurnLeft turretleft = new TurretTurnLeft(m_turret);
+  public final TurretTurnRight turretright = new TurretTurnRight(m_turret);
+
+  public static HoodSubsystem m_hood = new HoodSubsystem();
+  public final HoodDown hoodown = new HoodDown(m_hood);
+  public final HoodUp hoodup = new HoodUp(m_hood);
+
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -45,8 +72,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new Button(PS4Controller::getL2Button)
-      .whenPressed(command);
+    new Button(m_controller::getL2Button)
+      .whileHeld(turretleft);
+    new Button(m_controller::getL1Button)
+      .whenHeld(turretright);
   }
 
   /**
